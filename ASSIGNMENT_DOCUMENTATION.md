@@ -1,7 +1,7 @@
 # Assignment 3 - Complete Documentation
 
-**Student Name**: [Your Full Name]  
-**Student ID**: [Your ID]  
+**Student Name**: [sarah abdulaziz alghanam]  
+**Student ID**: [445052095]  
 **Date Submitted**: [Submission Date]
 
 ---
