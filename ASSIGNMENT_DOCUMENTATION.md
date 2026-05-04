@@ -31,16 +31,16 @@
 
 Document your development process with **minimum 3 entries** showing progression:
 
-### Entry 1 - [Date, Time]
-**What I implemented**: 
+### Entry 1 - [29 apr, 6 pm]
+**What I implemented**: i Forked the repository renamed it and added the code file in vs 
 
-**Challenges encountered**: 
+**Challenges encountered**: Identifying the correct repository and understanding the setup instructions
 
-**How I solved it**: 
+**How I solved it**:Followed the "Quick Start Guide" in the assignment pdf because i still remember some of the steps in ass 1
 
-**Testing approach**: 
+**Testing approach**: i run the code to make sure my std id is showing 
 
-**Time spent**: 
+**Time spent**: 1 h
 
 ---
 
