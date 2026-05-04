@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Random;
+import java.util.concurrent.locks.ReentrantLock;    
 
 // ANSI Color Codes for enhanced terminal output
 class Colors {
@@ -30,19 +31,64 @@ class SharedResources {
     // TODO: Students will add synchronization mechanisms here
     // HINT: Use ReentrantLock for mutual exclusion
     // HINT: Use Semaphore for limiting concurrent access
+     public static final ReentrantLock contextSwitchLock = new ReentrantLock();
+    public static final ReentrantLock completedProcessLock = new ReentrantLock();
+    public static final ReentrantLock waitingTimeLock = new ReentrantLock(); 
+    public static final ReentrantLock logLock = new ReentrantLock();
+    // Semaphore to limit CPU access aka cpu control 
     
     public static int contextSwitchCount = 0;      // Shared counter - NEEDS PROTECTION!
     public static int completedProcessCount = 0;   // Shared counter - NEEDS PROTECTION!
     public static long totalWaitingTime = 0;       // Shared accumulator - NEEDS PROTECTION!
     public static List<String> executionLog = new ArrayList<>();  // Shared list - NEEDS PROTECTION!
     
+      //method to increment context switch counter with lock protection
+    public static void incrementContextSwitch() {
+        contextSwitchLock.lock();
+        try {
+            contextSwitchCount++;
+        } finally {
+            contextSwitchLock.unlock();
+        }
+    }
+
+    //method to increment completed process counter with lock protection
+    public static void incrementCompletedProcess() {
+        completedProcessLock.lock();
+        try {
+            completedProcessCount++;
+        } finally {
+            completedProcessLock.unlock();
+        }
+    }
+
+    //method to add waiting time with lock protection
+    public static void addWaitingTime(long time) {
+        waitingTimeLock.lock();
+        try {
+            totalWaitingTime += time;
+        } finally {
+            waitingTimeLock.unlock();
+        }
+    }
+     //method to log execution with lock protection
+    public static void logExecution(String message) {
+        logLock.lock();
+        try {
+            executionLog.add(message);
+        } finally {
+            logLock.unlock();
+        }
+    }
+
+
     // TODO #1: Add a ReentrantLock(s) here to protect critical sections
     // Example: public static final ReentrantLock lock = new ReentrantLock();
     
     // TODO #2: Add a Semaphore to limit concurrent process execution
     // Example: public static final Semaphore cpuSemaphore = new Semaphore(1);
-    
-    // Method to increment context switch counter
+    /* 
+    //Method to increment context switch counter
     public static void incrementContextSwitch() {
         // TODO: Protect this critical section with a lock
         // RACE CONDITION: Multiple threads might read and write simultaneously!
@@ -67,6 +113,7 @@ class SharedResources {
         // RACE CONDITION: ArrayList is not thread-safe!
         executionLog.add(message);
     }
+*/
 }
 
 // Class representing a process that implements Runnable to be run by a thread
