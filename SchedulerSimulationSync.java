@@ -207,7 +207,7 @@ class Process implements Runnable {
             System.out.println();
             
         } finally {
-           
+            SharedResources.cpuSemaphore.release();
             // TODO #4: Release CPU semaphore here
             // Always release in finally block to prevent deadlocks!
         }
