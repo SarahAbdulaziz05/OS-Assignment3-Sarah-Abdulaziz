@@ -184,8 +184,17 @@ class Process implements Runnable {
             SharedResources.cpuSemaphore.release();
             // TODO #4: Release CPU semaphore here
             // Always release in finally block to prevent deadlocks!
-        }
+            
+        
     }
+}
+        catch (InterruptedException e) {
+                System.out.println(Colors.RED + "  ✗ " + name + " was interrupted." + Colors.RESET);
+            }
+        
+    }
+
+    
     
     private String createProgressBar(int progress, int width) {
         int filled = (progress * width) / 100;
