@@ -54,18 +54,20 @@ Document your development process with **minimum 3 entries** showing progression
 **Testing approach**:built the project once to see if there are any errors in references
 
 **Time spent**: 1 hour
+
 ---
 
-### Entry 3 - [Date, Time]
-**What I implemented**: 
+### Entry 3 - [1 may , 3 am]
+**What I implemented**: added my own function for the first task and connected it where it should be called in the code
 
-**Challenges encountered**: 
+**Challenges encountered**:was confused where exactly to put my function and which file is the right place 
 
-**How I solved it**: 
+**How I solved it**:checked the comments in the code and compared with the pdf to see which part matches my task
 
-**Testing approach**: 
+**Testing approach**:ran the code with simple input to see if my function is reached and gives any output
 
-**Time spent**: 
+**Time spent**: 1:15 min 
+
 ---
 
 ### Entry 4 - [Date, Time]
