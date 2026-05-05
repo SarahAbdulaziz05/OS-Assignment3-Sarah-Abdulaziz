@@ -91,7 +91,7 @@ Document your development process with **minimum 3 entries** showing progression
 
 **Testing approach**:ran the program after each change to see if it still runs and if the last task gives the right output
 
-**Time spent**:2h
+**Time spent**: 2:30 h
 
 ---
 
