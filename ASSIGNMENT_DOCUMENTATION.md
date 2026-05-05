@@ -34,27 +34,26 @@ Document your development process with **minimum 3 entries** showing progression
 ### Entry 1 - [29 apr, 6 pm]
 **What I implemented**: i Forked the repository renamed it and added the code file in vs 
 
-**Challenges encountered**: Identifying the correct repository and understanding the setup instructions
+**Challenges encountered**:Identifying the correct repository and understanding the setup instructions
 
 **How I solved it**:Followed the "Quick Start Guide" in the assignment pdf because i still remember some of the steps in ass 1
 
 **Testing approach**: i run the code to make sure my std id is showing 
 
-**Time spent**: 1 h
+**Time spent**: 1h 
 
 ---
 
-### Entry 2 - [Date, Time]
-**What I implemented**: 
+### Entry 2 - [30 apr, 10 pm]
+**What I implemented**:cloned my fork to my laptop and opened the project in vs to make sure everything is linked
 
-**Challenges encountered**: 
+**Challenges encountered**:vs at first did not open the solution file correctly and some files were not loaded
 
-**How I solved it**: 
+**How I solved it**: closed vs reopened the folder and selected the correct solution file then waited for restore to finish
 
-**Testing approach**: 
+**Testing approach**:built the project once to see if there are any errors in references
 
-**Time spent**: 
-
+**Time spent**: 1 hour
 ---
 
 ### Entry 3 - [Date, Time]
@@ -67,7 +66,6 @@ Document your development process with **minimum 3 entries** showing progression
 **Testing approach**: 
 
 **Time spent**: 
-
 ---
 
 ### Entry 4 - [Date, Time]
