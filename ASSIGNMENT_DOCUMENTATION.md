@@ -58,7 +58,7 @@ Document your development process with **minimum 3 entries** showing progression
 ---
 
 ### Entry 3 - [1 may , 3 am]
-**What I implemented**: added my own function for the first task and connected it where it should be called in the code
+**What I implemented**:added my own function for the first task and connected it where it should be called in the code
 
 **Challenges encountered**:was confused where exactly to put my function and which file is the right place 
 
@@ -69,30 +69,29 @@ Document your development process with **minimum 3 entries** showing progression
 **Time spent**: 1:15 min 
 
 ---
+### Entry 4 - [2 may, 7pm]
+**What I implemented**:completed the second and third tasks and made sure they are connected in the right place in the code
 
-### Entry 4 - [Date, Time]
-**What I implemented**: 
+**Challenges encountered**:did not know exactly where to add the new code for these tasks in the project
 
-**Challenges encountered**: 
+**How I solved it**:checked the pdf and the comments in the files and moved the code until it matched the right section
 
-**How I solved it**: 
+**Testing approach**:trying diffrent placeses untill its worked 
 
-**Testing approach**: 
-
-**Time spent**: 
+**Time spent**:2h 
 
 ---
 
-### Entry 5 - [Date, Time]
-**What I implemented**: 
+### Entry 5 - [3 may , 2am]
+**What I implemented**:cleaned up my code a bit and finished the last task
 
-**Challenges encountered**: 
+**Challenges encountered**:I put a brace in the wrong place and it broke the code
 
-**How I solved it**: 
+**How I solved it**:i tracked where the wrong brace is then tried another placess untill its worked 
 
-**Testing approach**: 
+**Testing approach**:ran the program after each change to see if it still runs and if the last task gives the right output
 
-**Time spent**: 
+**Time spent**:2h
 
 ---
 
