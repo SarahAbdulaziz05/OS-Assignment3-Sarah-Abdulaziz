@@ -289,8 +289,9 @@ java SchedulerSimulationSync
 ---
 
 ### Test 2: Exception Testing
-**What I tested**:checking that no concurrentmodificationexception happens when many threads write to executionlog
-**Testing procedure**:run the program many times and watch the console for exceptions while it prints the process summary and execution log summary 
+**What I tested**:checking that no concurrent modification exception happens when many threads write to execution log
+
+**Testing procedure**:i run the program many times and watch the console for exceptions while it prints the process summary and execution log summary 
 
 **Results**:no concurrent modification exception appeared and total log entries printed correctly every time 
 
@@ -302,22 +303,22 @@ java SchedulerSimulationSync
 **What I tested**: Verifying correct final values (total burst time, context switches, etc.)
 that final statistics match the process list for example number of completed processes equals numProcesses and average waiting time matches totalwaitingtime divided by processes size
 
-**Expected values**:completed processes should equal the number of processes created and average waiting time should be totalWaitingTime divided by numProcesses 
+**Expected values**:i expected the scheduler to complete all 20 processes and to report a consistent average waiting time based on total waiting time divided by the number of processes 
 
-**Actual values**: 
+**Actual values**:the program printed total context switches 41 total completed processes 20 total waiting time 1695415 ms and average waiting time 84770 ms
 
-**Analysis**:expected and actual values are the same so counters and waiting time calculations are correct 
+**Analysis**:all 20 processes finished and the printed average waiting time matches total waiting time divided by 20 so the statistics and synchronized counters are correct
 
 ---
 
 ### Test 4: Different Scenarios
 **Scenario tested**: [e.g., different time quantum, more processes, etc.]
 
-**Purpose**: 
+**Purpose**:to see if the scheduler and synchronization still work correctly when the workload or time slice change 
 
-**Results**: 
+**Results**:all processes still completed and the statistics stayed the same 
 
-**What I learned**: 
+**What I learned**:synchronization keeps the program correct even when the idea or senario change 
 
 ---
 
@@ -327,22 +328,23 @@ that final statistics match the process list for example number of completed pro
 
 [6-8 sentences about key concepts, challenges, insights]
 
+i learned that any shared variable between threads must be protected and to use try finally so locks and semaphores are released even if an exception happens
 ---
 
 ### Real-world applications:
 
 Give TWO examples where synchronization is critical:
 
-**Example 1**: 
+**Example 1**:online vintage bags shop where many users try to buy the same bag at the same time which need synchronization so it dosent sell to more than one customer 
 
-**Example 2**: 
+**Example 2**:nline movie ticket booking needs synchronization so two users do not reserve the same seat for the same show at the same time 
 
 ---
 
 ### How I would explain synchronization to others:
 
 [Explain to someone who just finished Assignment 1 - use simple terms and analogies]
-
+i would say imagine many students using one notebook at the same time if they all write together the pages get messy and numbers are wrong a lock is like holding the notebook you take it write your part then give it back so the next student can use it and the notes stay correct
 ---
 
 ## Part 6: GitHub Repository Information
