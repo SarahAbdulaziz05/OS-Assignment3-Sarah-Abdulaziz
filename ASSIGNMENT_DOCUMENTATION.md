@@ -14,7 +14,7 @@
 > Set sharing to "Anyone with the link can view".
 > Test the link in incognito/private mode before submitting.
 
-**Video Link**: [Paste your personal Gmail Google Drive link here]
+**Video Link**: [(https://drive.google.com/file/d/1U_vBca2moMXK9wQqBrrGShijJhval40e/view?usp=drivesdk)]
 
 **Video filename**: `[YourStudentID]_Assignment3_Synchronization.mp4`
 
@@ -352,7 +352,7 @@ i would say imagine many students using one notebook at the same time if they al
 
 **Repository URL**:https://github.com/SarahAbdulaziz05/OS-Assignment3-Sarah-Abdulaziz 
 
-**Number of commits**:17 commits  
+**Number of commits**:19 commits  
 
 **Commit messages**:
 1.set my student id:445052095 
