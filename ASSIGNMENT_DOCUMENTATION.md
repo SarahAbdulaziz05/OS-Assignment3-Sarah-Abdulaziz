@@ -105,7 +105,8 @@ Document your development process with **minimum 3 entries** showing progression
 
 **Your Answer**:
 
-[Your answer here - 4-6 sentences with code examples]
+[the first race shared resource the counters contextSwitchCount and completedProcessCount concurrent access loses increments and final counts become wrong
+the second race shared resource the execution log arraylist concurrent add and iterate can corrupt the list and cause concurrentmodificationexception or missing log entries]
 
 ---
 
@@ -114,7 +115,7 @@ Document your development process with **minimum 3 entries** showing progression
 
 **Your Answer**:
 
-[Your answer here - explain your implementation choices]
+[reentrantlock is a mutual exclusion lock i used it to protect the counters and the execution log so each update happens as one atomic critical section semaphore is a permit based synchronization tool i used a binary semaphore before the cpu section so at most one process thread can execute on the simulated cpu at any time]
 
 ---
 
@@ -123,7 +124,7 @@ Document your development process with **minimum 3 entries** showing progression
 
 **Your Answer**:
 
-[Your answer here - reference try-finally blocks, lock ordering, etc.]
+[deadlock is when threads wait forever for each other locks and nobody can continue and i prevent it by always releasing locks and semaphores in finally blocks so resources are never held forever and by never holding more than one lock at the same time]
 
 ---
 
@@ -136,7 +137,8 @@ Document your development process with **minimum 3 entries** showing progression
 
 **Your Answer**:
 
-[Your answer here - explain coarse-grained vs fine-grained locking, independence of counters, concurrency implications. Show understanding of when to use each approach. 5-8 sentences expected.]
+[i used one lock for all three counters coarse grained locking makes the code simple and safe but threads updating different counters still block each other
+using three separate locks fine grained would allow higher concurrency because independent counters could be updated in parallel but the design becomes more complex and easier to get wrong]
 
 ---
 
