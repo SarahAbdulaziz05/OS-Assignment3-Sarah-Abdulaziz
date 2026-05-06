@@ -349,30 +349,38 @@ i would say imagine many students using one notebook at the same time if they al
 
 ## Part 6: GitHub Repository Information
 
-**Repository URL**: 
+**Repository URL**:https://github.com/SarahAbdulaziz05/OS-Assignment3-Sarah-Abdulaziz 
 
-**Number of commits**: 
+**Number of commits**:17 commits  
 
-**Commit messages**: 
-1. 
-2. 
-3. 
-4. 
+**Commit messages**:
+1.set my student id:445052095 
+2.did the first to-do Add a ReentrantLock 
+3.to do 2 i added Semaphore to limit concurrent process execution
+4.i added a cpu acquire to do 3
+more of them just incase 
+
+i added cpu release to do 4
+ASSIGNMENT_DOCUMENTATION.md entries day 2
+Update ASSIGNMENT_DOCUMENTATION.md enters 3
+Update assignment documentation with new entries day 4
+Revise concurrency-related answers in documentation 
+Enhance synchronization analysis and testing documentation 
 
 ---
 
 ## Summary
 
 **Total time spent on assignment**: 
-
+about 2-3 hours each day i get the chance to do it
 **Key takeaways**: 
-1. 
-2. 
-3. 
+1.i did learn how to use reentrantlock to protect shared counters and logs 
+2.i learned how a binary semaphore can model a single cpu in a multi thread schedul
+3.saw how testing multiple runs helps to catch race conditions and deadlocks
 
-**Most challenging aspect**: 
+**Most challenging aspect**:debugging synchronization issues and making sure the counters and waiting time values are always correct   
 
-**What I'm most proud of**: 
+**What I'm most proud of**:first for finishinh this long homework second for using separate locks and a cpu semaphore correctly and my program now runs many times with stable and clear output  
 
 ---
 
