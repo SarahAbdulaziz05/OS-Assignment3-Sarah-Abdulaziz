@@ -146,94 +146,167 @@ using three separate locks fine grained would allow higher concurrency because i
 
 ### Critical Section #1: Counter Variables
 
-**Which variables**: 
+**Which variables**:contextSwitchCount and completedProcessCount and totalWaitingTime
 
-**Why they need protection**: 
+**Why they need protection**:many process threads update these counters so without the locks some updates can be lost 
 
-**Synchronization mechanism used**: 
+**Synchronization mechanism used**:three reentrant locks contextSwitchLock completedProcessLock waitingTimeLock in class sharedresources near the top of the file
 
 **Code snippet**:
 ```java
-// Paste your implementation here
+ public static final ReentrantLock contextSwitchLock = new ReentrantLock();
+    public static final ReentrantLock completedProcessLock = new ReentrantLock();
+    public static final ReentrantLock waitingTimeLock = new ReentrantLock(); 
+
+public static void incrementContextSwitch() {
+        contextSwitchLock.lock();
+        try {
+            contextSwitchCount++;
+        } finally {
+            contextSwitchLock.unlock();
+        }
+    }
+    //method to increment completed process counter with lock protection
+    public static void incrementCompletedProcess() {
+        completedProcessLock.lock();
+        try {
+            completedProcessCount++;
+        } finally {
+            completedProcessLock.unlock();
+        }
+    }
+    //method to add waiting time with lock protection
+    public static void addWaitingTime(long time) {
+        waitingTimeLock.lock();
+        try {
+            totalWaitingTime += time;
+        } finally {
+            waitingTimeLock.unlock();
+        }
+    }
 ```
 
-**Justification**: 
+**Justification**:each update is inside lock and unlock so only one thread changes a counter at a time and the final totals are correct
 
 ---
 
 ### Critical Section #2: Execution Log
 
-**What resource**: 
+**What resource**: the shared list executionLog in sharedresources
 
-**Why it needs protection**: 
+**Why it needs protection**:all process threads add log messages so without the lock the list could be modified while another thread is iterating and cause concurrent modification exception
 
-**Synchronization mechanism used**: 
+**Synchronization mechanism used**:reentrantlock logLock in sharedresources used in logExecution 
 
 **Code snippet**:
 ```java
-// Paste your implementation here
-```
+ public static final ReentrantLock logLock = new ReentrantLock();
+  public static List<String> executionLog = new ArrayList<>();
 
-**Justification**: 
+ //method to log execution with lock protection
+    public static void logExecution(String message) {
+        logLock.lock();
+        try {
+            executionLog.add(message);
+        } finally {
+            logLock.unlock();
+        }
+    }
+
+```
+**Justification**:the log lock makes every add call atomic so the list stay consistent and the program can without errors print the log at the end
 
 ---
 
 ### Critical Section #3: CPU Semaphore
 
-**Purpose of semaphore**: 
+**Purpose of semaphore**: to limit cpu access so that only one process thread can execute on the simulated cpu at a time
 
-**Number of permits and why**: 
+**Number of permits and why**:one permit binary semaphore so it behaves like a single core cpu and avoids overlap between process threads 
 
-**Where implemented**: 
+**Where implemented**:cpuSemaphore is declared in sharedresources and after that acquired and released in process run and runToCompletion methods near the top of each method 
 
 **Code snippet**:
 ```java
-// Paste your implementation here
+     // Semaphore to limit CPU access aka cpu control 
+    public static final Semaphore cpuSemaphore = new Semaphore(1);
+ // This ensures only allowed number of processes run simultaneously
+          try {
+            SharedResources.cpuSemaphore.acquire();
+        try {
+            if (startTime == -1) {
+              startTime = System.currentTimeMillis();
+            }
+        // Increment context switch counter
+            SharedResources.incrementContextSwitch();
+// the rest of the code
+    } finally {
+        SharedResources.cpuSemaphore.release();
+    }
+} catch (InterruptedException e) {
+    System.out.println(Colors.RED + "  ✗ " + name + " was interrupted." + Colors.RESET);
+}
+public void runToCompletion() {
+  // TODO: Similar synchronization needed here
+        try {
+            SharedResources.cpuSemaphore.acquire();
+  try {
+        // the rest of the code
+    } finally {
+        SharedResources.cpuSemaphore.release();
+    }
+} catch (InterruptedException e) {
+    System.out.println(Colors.RED + "  ✗ " + name + " was interrupted." + Colors.RESET);
+}
 ```
 
-**Effect on program behavior**: 
-
+**Effect on program behavior**:only one process uses the cpu section at a time so context switches waiting time and progress bars are clean and results are the same every run 
 ---
 
 ## Part 4: Testing and Verification (2 marks)
 
 ### Test 1: Consistency Check
-**What I tested**: Running program multiple times to verify consistent results
+**What I tested**: running schedulersimulationsync main several times to see if statistics are consistent
 
-**Testing procedure**: 
+**Testing procedure**:
+in terminal compile once then run at least five times
 ```bash
-# Commands used (run the program at least 5 times)
+# javac SchedulerSimulationSync.java
+java SchedulerSimulationSync
+java SchedulerSimulationSync
+java SchedulerSimulationSync
+java SchedulerSimulationSync
+java SchedulerSimulationSync
 ```
 
 **Results**: 
-(Show that running multiple times produces consistent, correct results)
+(for all runs the total context switches completed processes and average waiting time stayed the same for the same student id)
 
 **Why synchronization is necessary**: 
-(Explain what race conditions COULD occur without synchronization, even if you didn't observe them. Explain which shared resources need protection and why.)
+(without the locks on counters and log and without the cpu semaphore threads could overlap and some updates would be lost so the totals would change between runs)
 
-**Conclusion**: 
-
+**Conclusion**:the repeated identical outputs show that the synchronization is working correctly
 ---
 
 ### Test 2: Exception Testing
-**What I tested**: Checking for ConcurrentModificationException
+**What I tested**:checking that no concurrentmodificationexception happens when many threads write to executionlog
+**Testing procedure**:run the program many times and watch the console for exceptions while it prints the process summary and execution log summary 
 
-**Testing procedure**: 
+**Results**:no concurrent modification exception appeared and total log entries printed correctly every time 
 
-**Results**: 
-
-**What this proves**: 
+**What this proves**:the log lock is protecting the shared list from unsafe concurrent modifications 
 
 ---
 
 ### Test 3: Correctness Verification
 **What I tested**: Verifying correct final values (total burst time, context switches, etc.)
+that final statistics match the process list for example number of completed processes equals numProcesses and average waiting time matches totalwaitingtime divided by processes size
 
-**Expected values**: 
+**Expected values**:completed processes should equal the number of processes created and average waiting time should be totalWaitingTime divided by numProcesses 
 
 **Actual values**: 
 
-**Analysis**: 
+**Analysis**:expected and actual values are the same so counters and waiting time calculations are correct 
 
 ---
 
