@@ -344,6 +344,7 @@ Give TWO examples where synchronization is critical:
 ### How I would explain synchronization to others:
 
 [Explain to someone who just finished Assignment 1 - use simple terms and analogies]
+
 i would say imagine many students using one notebook at the same time if they all write together the pages get messy and numbers are wrong a lock is like holding the notebook you take it write your part then give it back so the next student can use it and the notes stay correct
 ---
 
